@@ -1,8 +1,16 @@
 name: en-vivo
 
-# Comprueba el ejemplo contra el Crossref real. Se lanza a mano o cada lunes.
+# Comprueba el ejemplo contra el Crossref real. Se lanza a mano, cada lunes
+# y cuando cambian el ejemplo o el código que consulta Crossref.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "ejemplos/**"
+      - "src/verificapa/crossref.py"
+      - "src/verificapa/verifier.py"
+      - ".github/workflows/en-vivo.yml"
   schedule:
     - cron: "17 6 * * 1"
 
