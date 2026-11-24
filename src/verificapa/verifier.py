@@ -215,7 +215,12 @@ def verify_reference(
             result.work, result.title_similarity = work, sim
             result.suggested_doi = work.doi
             result.issues += issues
-        elif work is not None and sim >= 0.75:
+        elif (
+            work is not None
+            and sim >= 0.75
+            # Título parecido con otro autor y otro año: es otra obra.
+            and not (author_ok is False and any(i.code == "year_mismatch" for i in issues))
+        ):
             result.status = Status.REVIEW
             result.work, result.title_similarity = work, sim
             result.issues += issues

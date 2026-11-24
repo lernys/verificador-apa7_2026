@@ -40,6 +40,15 @@ JOURNAL_NAMESAKE = {
     "container-title": ["Distance Learning"],
     "type": "journal-article",
 }
+# Título casi idéntico al de otra obra, con otro autor y otro año.
+SIMILAR_TITLE = {
+    "DOI": "10.3109/0142159x.2016.1173661",
+    "title": ["Connectivism: A knowledge learning theory for the digital age?"],
+    "author": [{"family": "Goldie"}],
+    "issued": {"date-parts": [[2016]]},
+    "container-title": ["Medical Teacher"],
+    "type": "journal-article",
+}
 BY_DOI = {w["DOI"]: w for w in (DEEP_LEARNING, GPT3, UNRELATED)}
 OTHER_AGENCY = {"10.48550/arxiv.1706.03762"}
 
@@ -59,7 +68,7 @@ def fake_fetch(url):
         elif "deep learning" in query and "lecun" in query:
             items = [DEEP_LEARNING]
         elif "connectivism" in query:
-            items = [JOURNAL_NAMESAKE]
+            items = [JOURNAL_NAMESAKE, SIMILAR_TITLE]
         else:
             items = [UNRELATED]
         return 200, json.dumps({"message": {"items": items}}).encode()

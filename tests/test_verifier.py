@@ -54,8 +54,9 @@ def test_sin_doi_no_encontrada(client):
     assert r.status is Status.NOT_FOUND
 
 
-def test_el_nombre_de_la_revista_no_cuenta_como_titulo(client):
-    # Crossref devuelve un artículo titulado igual que la revista de la referencia.
+def test_obra_ausente_con_candidatos_enganosos(client):
+    # Crossref devuelve un artículo titulado igual que la revista de la referencia
+    # y otro de título casi idéntico, pero de otro autor y otro año.
     r = verify_reference(
         "Siemens, G. (2005). Connectivism: A learning theory for the digital age. International "
         "Journal of Instructional Technology and Distance Learning, 2(1), 3-10.",
@@ -126,3 +127,8 @@ def test_cli_json_texto_y_estricto(client, tmp_path, capsys):
 
     assert main([str(path), "-f", "markdown"], client=client) == 0
     assert "# Informe de verificación" in capsys.readouterr().out
+
+
+def test_titulo_parecido_con_mismo_autor_pide_revision(client):
+    r = verify_reference("Goldie, J. (2016). Connectivism: A learning theory for the digital age. Medical Teacher.", client)
+    assert r.status is Status.REVIEW
