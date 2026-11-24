@@ -1,0 +1,30 @@
+name: en-vivo
+
+# Comprueba el ejemplo contra el Crossref real. Se lanza a mano o cada lunes.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  crossref:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -e .
+      - run: verificapa ejemplos/referencias.txt --mailto info@iaforteachers.com
+      - name: Estados esperados
+        run: |
+          verificapa ejemplos/referencias.txt --mailto info@iaforteachers.com -f json > informe.json
+          python - <<'PY'
+          import json
+          estados = [r["status"] for r in json.load(open("informe.json", encoding="utf-8"))]
+          print(estados)
+          assert estados == ["verified", "found", "mismatch", "not_found", "other_agency"], estados
+          PY
