@@ -51,6 +51,17 @@ for r in verify_text(open("references.txt", encoding="utf-8").read()):
     print(r.index, r.status.value, r.suggested_doi)
 ```
 
+## Claude Code plugin
+
+The easiest way to use it. The plugin gives Claude a skill that verifies reference lists and reads the results with due caution. Nothing else to install: it only needs `python3`.
+
+```text
+/plugin marketplace add lernys/verificador-apa7_2026
+/plugin install verificapa@iaforteachers
+```
+
+Then just ask: "verify the references in this paper". The skill instructions are written in Spanish; Claude answers in your language.
+
 ## Use it inside Claude (MCP server)
 
 `verificapa` ships an [MCP](https://modelcontextprotocol.io) server, so Claude and other compatible assistants can verify references during a conversation. Three read-only tools: `verificar_referencias` (verify a whole list), `consultar_doi` (does this DOI exist, and whose is it?) and `buscar_obra` (find the works closest to a reference or title).

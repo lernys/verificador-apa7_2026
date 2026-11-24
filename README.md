@@ -86,6 +86,19 @@ for r in verify_text(open("referencias.txt", encoding="utf-8").read()):
     print(r.index, r.status.value, r.suggested_doi)
 ```
 
+## Plugin para Claude Code
+
+La forma más cómoda de usarlo. El plugin añade a Claude una skill que sabe verificar bibliografías e interpretar el resultado con prudencia. No hay que instalar nada más: solo hace falta tener `python3`.
+
+Dentro de Claude Code:
+
+```text
+/plugin marketplace add lernys/verificador-apa7_2026
+/plugin install verificapa@iaforteachers
+```
+
+Después basta con pedirlo: «verifica las referencias de este trabajo». También puede llamarse a mano con `/verificapa:verificar-referencias`.
+
 ## Usarlo dentro de Claude (servidor MCP)
 
 `verificapa` incluye un servidor [MCP](https://modelcontextprotocol.io). Con él, Claude y otros asistentes compatibles pueden verificar referencias en mitad de una conversación. Basta con pedirlo: «verifica la bibliografía de este trabajo».

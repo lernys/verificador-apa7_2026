@@ -1,0 +1,15 @@
+{
+  "name": "verificapa",
+  "displayName": "Verificador de referencias APA 7",
+  "version": "0.2.0",
+  "description": "Comprueba si las referencias de un trabajo existen de verdad y avisa de las que parecen inventadas por una IA. Verifies APA 7 references against Crossref.",
+  "author": {
+    "name": "Fernando Santamaría González",
+    "email": "info@iaforteachers.com",
+    "url": "https://iaforteachers.com"
+  },
+  "homepage": "https://github.com/lernys/verificador-apa7_2026",
+  "repository": "https://github.com/lernys/verificador-apa7_2026",
+  "license": "MIT",
+  "keywords": ["apa", "apa7", "referencias", "citations", "crossref", "doi", "education", "docentes"]
+}

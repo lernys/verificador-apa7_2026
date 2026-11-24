@@ -1,0 +1,18 @@
+{
+  "name": "iaforteachers",
+  "description": "Herramientas de IAforTeachers para docentes universitarios: verificación de referencias y apoyo a la corrección de trabajos.",
+  "owner": {
+    "name": "Fernando Santamaría González",
+    "email": "info@iaforteachers.com",
+    "url": "https://iaforteachers.com"
+  },
+  "plugins": [
+    {
+      "name": "verificapa",
+      "source": ".",
+      "description": "Comprueba si las referencias de un trabajo existen de verdad y avisa de las que parecen inventadas por una IA.",
+      "category": "education",
+      "tags": ["apa7", "referencias", "crossref", "docentes"]
+    }
+  ]
+}

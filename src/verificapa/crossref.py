@@ -82,7 +82,7 @@ class CrossrefClient:
         self._fetch = fetch or self._http_fetch
 
     def _http_fetch(self, url: str) -> tuple[int, bytes]:
-        agent = "verificapa/0.1 (https://github.com/lernys/verificador-apa7_2026"
+        agent = "verificapa/0.2 (https://github.com/lernys/verificador-apa7_2026"
         agent += f"; mailto:{self.mailto})" if self.mailto else ")"
         request = urllib.request.Request(url, headers={"User-Agent": agent})
         for attempt in range(3):

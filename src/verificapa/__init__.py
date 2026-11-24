@@ -5,7 +5,7 @@ from .formato import check_format
 from .parser import Reference, parse_reference, split_references
 from .verifier import Issue, Result, Status, verify_reference, verify_text
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "CrossrefClient",
