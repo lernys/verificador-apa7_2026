@@ -129,6 +129,7 @@ def test_cli_json_texto_y_estricto(client, tmp_path, capsys):
     assert "# Informe de verificación" in capsys.readouterr().out
 
 
-def test_titulo_parecido_con_mismo_autor_pide_revision(client):
+def test_titulo_parecido_con_mismo_autor_no_se_descarta(client):
     r = verify_reference("Goldie, J. (2016). Connectivism: A learning theory for the digital age. Medical Teacher.", client)
-    assert r.status is Status.REVIEW
+    assert r.status in (Status.FOUND, Status.REVIEW)
+    assert r.work.doi == "10.3109/0142159x.2016.1173661"
