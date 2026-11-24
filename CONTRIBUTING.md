@@ -12,7 +12,7 @@ Gracias por su interés. Este proyecto nace en la comunidad de [IAforTeachers](h
 ```bash
 git clone https://github.com/lernys/verificador-apa7_2026
 cd verificador-apa7_2026
-pip install -e ".[dev]"
+pip install -e ".[dev,mcp]"
 pytest
 ```
 

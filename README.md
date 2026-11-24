@@ -29,7 +29,7 @@ Además revisa varios descuidos de formato de APA 7: el DOI que no está escrito
 
 ## Instalación
 
-Necesita Python 3.10 o posterior. No tiene dependencias.
+Necesita Python 3.10 o posterior. No tiene dependencias, salvo el servidor MCP, que es opcional.
 
 ```bash
 pip install git+https://github.com/lernys/verificador-apa7_2026
@@ -85,6 +85,47 @@ from verificapa import verify_text
 for r in verify_text(open("referencias.txt", encoding="utf-8").read()):
     print(r.index, r.status.value, r.suggested_doi)
 ```
+
+## Usarlo dentro de Claude (servidor MCP)
+
+`verificapa` incluye un servidor [MCP](https://modelcontextprotocol.io). Con él, Claude y otros asistentes compatibles pueden verificar referencias en mitad de una conversación. Basta con pedirlo: «verifica la bibliografía de este trabajo».
+
+Ofrece tres herramientas:
+
+| Herramienta | Qué hace |
+|---|---|
+| `verificar_referencias` | Verifica una lista completa y devuelve el informe. |
+| `consultar_doi` | Dice si un DOI existe y a qué obra pertenece. |
+| `buscar_obra` | Busca las obras que más se parecen a una referencia o un título. |
+
+Las tres son de solo lectura: consultan Crossref y no modifican nada.
+
+**Instalación**
+
+```bash
+pip install "verificapa[mcp] @ git+https://github.com/lernys/verificador-apa7_2026"
+```
+
+**En Claude Code**
+
+```bash
+claude mcp add verificapa -- verificapa-mcp
+```
+
+**En la aplicación de escritorio de Claude**, añada esto al archivo `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "verificapa": {
+      "command": "verificapa-mcp",
+      "env": { "VERIFICAPA_MAILTO": "su-correo@ejemplo.org" }
+    }
+  }
+}
+```
+
+La variable `VERIFICAPA_MAILTO` es opcional. Identifica sus consultas ante Crossref, que las atiende antes.
 
 ## Límites que conviene conocer
 

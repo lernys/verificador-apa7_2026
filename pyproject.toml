@@ -11,7 +11,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 authors = [{ name = "Fernando Santamaría González", email = "info@iaforteachers.com" }]
-keywords = ["apa", "apa7", "crossref", "doi", "referencias", "citations", "hallucination", "education"]
+keywords = ["apa", "apa7", "crossref", "doi", "referencias", "citations", "hallucination", "education", "mcp", "claude"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Education",
@@ -26,6 +26,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
+mcp = ["mcp>=1.2"]
 
 [project.urls]
 Homepage = "https://github.com/lernys/verificador-apa7_2026"
@@ -33,6 +34,7 @@ Issues = "https://github.com/lernys/verificador-apa7_2026/issues"
 
 [project.scripts]
 verificapa = "verificapa.cli:main"
+verificapa-mcp = "verificapa.mcp_server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/verificapa"]

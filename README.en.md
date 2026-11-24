@@ -26,7 +26,7 @@ It also checks a few common APA 7 format slips: a DOI not written as a link, a p
 
 ## Install
 
-Python 3.10 or later. No dependencies.
+Python 3.10 or later. No dependencies, except for the optional MCP server.
 
 ```bash
 pip install git+https://github.com/lernys/verificador-apa7_2026
@@ -50,6 +50,30 @@ from verificapa import verify_text
 for r in verify_text(open("references.txt", encoding="utf-8").read()):
     print(r.index, r.status.value, r.suggested_doi)
 ```
+
+## Use it inside Claude (MCP server)
+
+`verificapa` ships an [MCP](https://modelcontextprotocol.io) server, so Claude and other compatible assistants can verify references during a conversation. Three read-only tools: `verificar_referencias` (verify a whole list), `consultar_doi` (does this DOI exist, and whose is it?) and `buscar_obra` (find the works closest to a reference or title).
+
+```bash
+pip install "verificapa[mcp] @ git+https://github.com/lernys/verificador-apa7_2026"
+claude mcp add verificapa -- verificapa-mcp
+```
+
+For Claude Desktop, add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "verificapa": {
+      "command": "verificapa-mcp",
+      "env": { "VERIFICAPA_MAILTO": "you@example.org" }
+    }
+  }
+}
+```
+
+`VERIFICAPA_MAILTO` is optional; it identifies your requests to Crossref.
 
 ## Limits worth knowing
 
