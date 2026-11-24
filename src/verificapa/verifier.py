@@ -92,17 +92,22 @@ def title_similarity(ref: Reference, work: Work) -> float:
     candidates = [work.title]
     if work.subtitle:
         candidates.append(f"{work.title} {work.subtitle}")
-    raw = normalize(ref.raw)
     title = normalize(ref.title or "")
+    raw = normalize(ref.raw)
     best = 0.0
     for candidate in candidates:
         cand = normalize(candidate)
         if not cand:
             continue
-        if len(cand) >= 15 and cand in raw:
-            return 1.0
         if title:
             best = max(best, SequenceMatcher(None, title, cand).ratio())
+            # Título con o sin subtítulo: uno contiene al otro casi entero.
+            short, long_ = sorted((title, cand), key=len)
+            if len(short) >= 15 and short in long_ and len(short) / len(long_) >= 0.6:
+                return 1.0
+        elif len(cand) >= 25 and cand in raw:
+            # Sin título reconocible, se busca el de Crossref en toda la referencia.
+            return 1.0
     return best
 
 

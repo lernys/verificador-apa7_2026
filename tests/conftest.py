@@ -31,6 +31,15 @@ UNRELATED = {
     "container-title": ["Soil Journal"],
     "type": "journal-article",
 }
+# Su título coincide con el nombre de una revista, no con el de un artículo.
+JOURNAL_NAMESAKE = {
+    "DOI": "10.1108/dl-10-2005-0007",
+    "title": ["Instructional Technology"],
+    "author": [{"family": "Finley"}],
+    "issued": {"date-parts": [[2005]]},
+    "container-title": ["Distance Learning"],
+    "type": "journal-article",
+}
 BY_DOI = {w["DOI"]: w for w in (DEEP_LEARNING, GPT3, UNRELATED)}
 OTHER_AGENCY = {"10.48550/arxiv.1706.03762"}
 
@@ -49,6 +58,8 @@ def fake_fetch(url):
             items = [UNRELATED, GPT3]
         elif "deep learning" in query and "lecun" in query:
             items = [DEEP_LEARNING]
+        elif "connectivism" in query:
+            items = [JOURNAL_NAMESAKE]
         else:
             items = [UNRELATED]
         return 200, json.dumps({"message": {"items": items}}).encode()

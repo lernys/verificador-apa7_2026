@@ -50,8 +50,27 @@ def test_sin_doi_encontrada(client):
 
 
 def test_sin_doi_no_encontrada(client):
-    r = verify_reference("Siemens, G. (2005). Connectivism: A learning theory. IJITDL, 2(1), 3-10.", client)
+    r = verify_reference("Ruiz, A. (2005). Una obra que no existe en ninguna parte. Revista, 2(1), 3-10.", client)
     assert r.status is Status.NOT_FOUND
+
+
+def test_el_nombre_de_la_revista_no_cuenta_como_titulo(client):
+    # Crossref devuelve un artículo titulado igual que la revista de la referencia.
+    r = verify_reference(
+        "Siemens, G. (2005). Connectivism: A learning theory for the digital age. International "
+        "Journal of Instructional Technology and Distance Learning, 2(1), 3-10.",
+        client,
+    )
+    assert r.status is Status.NOT_FOUND
+
+
+def test_titulo_con_subtitulo_separado(client):
+    r = verify_reference(
+        "Floridi, L. y Chiriatti, M. (2020). GPT-3: Its nature, scope, limits, and consequences "
+        "revisited. Minds and Machines.",
+        client,
+    )
+    assert r.status in (Status.FOUND, Status.REVIEW)
 
 
 def test_doi_de_otra_agencia(client):
