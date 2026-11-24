@@ -9,7 +9,7 @@ description = "Verifica referencias APA 7 contra Crossref y detecta citas invent
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "Fernando Santamaría González", email = "info@iaforteachers.com" }]
 keywords = ["apa", "apa7", "crossref", "doi", "referencias", "citations", "hallucination", "education"]
 classifiers = [

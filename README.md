@@ -29,7 +29,7 @@ Además revisa varios descuidos de formato de APA 7: el DOI que no está escrito
 
 ## Instalación
 
-Necesita Python 3.9 o posterior. No tiene dependencias.
+Necesita Python 3.10 o posterior. No tiene dependencias.
 
 ```bash
 pip install git+https://github.com/lernys/verificador-apa7_2026

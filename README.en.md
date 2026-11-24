@@ -26,7 +26,7 @@ It also checks a few common APA 7 format slips: a DOI not written as a link, a p
 
 ## Install
 
-Python 3.9 or later. No dependencies.
+Python 3.10 or later. No dependencies.
 
 ```bash
 pip install git+https://github.com/lernys/verificador-apa7_2026
